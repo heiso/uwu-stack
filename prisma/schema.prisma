@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  email            String  @unique @db.VarChar(255)
+  isEmailValidated Boolean @default(false) @map("is_email_validated")
+  hashedPassword   String? @map("hashed_password") @db.VarChar(161)
+  todos            Todo[]
+
+  @@map("users")
+}
+
+model Todo {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  label       String
+  isCompleted Boolean @default(false) @map("is_completed")
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int     @map("user_id")
+
+  @@map("todos")
+}
