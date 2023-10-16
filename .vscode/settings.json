@@ -10,5 +10,9 @@
         "cmd": "npm run prisma-map"
       }
     ]
-  }
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.classAttributes": ["class", "className", ".*Styles", ".*Class"]
 }

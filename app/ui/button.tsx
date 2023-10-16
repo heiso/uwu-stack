@@ -1,64 +1,36 @@
 import { Link, type LinkProps } from '@remix-run/react'
-import React from 'react'
+import { type ButtonHTMLAttributes } from 'react'
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, ...props }, ref) => {
-  return (
-    <button
-      className={`rounded-full text-center transition-button disabled:pointer-events-none ${
-        className ?? ''
-      }`}
-      ref={ref}
-      {...props}
-    />
-  )
-})
+const defaultClass =
+  'rounded-md text-center disabled:pointer-events-none px-9 py-4 font-bold text-large disabled:opacity-50 select-none transition hover:scale-105 active:opacity-80'
+const primaryClass = 'bg-pink-500 text-pink-100'
+const secondaryClass = 'bg-transparent border'
 
-Button.displayName = 'Button'
+type ButtonProps = (
+  | (ButtonHTMLAttributes<HTMLButtonElement> & { as?: 'button' })
+  | (LinkProps & { as: 'link' })
+) & { primary?: boolean }
 
-const ButtonPrimary = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => {
+export function Button({ primary, className, children, ...props }: ButtonProps) {
+  if (props.as === 'link') {
     return (
-      <Button
-        className={`px-9 py-4 bg-pink-500 text-pink-100 active:bg-pink-700 font-bold text-large disabled:opacity-50 ${
+      <Link
+        className={`block ${defaultClass} ${primary ? primaryClass : secondaryClass} ${
           className ?? ''
         }`}
-        ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </Link>
     )
-  },
-)
+  }
 
-ButtonPrimary.displayName = 'Button'
-
-export function LinkPrimary({ className, children, ...props }: LinkProps) {
   return (
-    <Link
-      className={`block rounded-full text-center transition-button disabled:pointer-events-none px-9 py-4 bg-pink-500 text-pink-100 active:bg-pink-700 font-bold text-large ${
-        className ?? ''
-      }`}
+    <button
+      className={`${defaultClass} ${primary ? primaryClass : secondaryClass} ${className ?? ''}`}
       {...props}
     >
       {children}
-    </Link>
+    </button>
   )
 }
-
-const ButtonSecondary = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <Button
-        className={`px-6 py-4 bg-pink-100 text-pink-500 hover:bg-[#EAEBFF] font-bold ${
-          className ?? ''
-        }`}
-        ref={ref}
-        {...props}
-      />
-    )
-  },
-)
-
-ButtonSecondary.displayName = 'Button'
-
-export { Button, ButtonPrimary, ButtonSecondary }

@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG NODE_VERSION=18.7.0
+ARG NODE_VERSION=20.6.1
 
 
 
@@ -7,6 +7,9 @@ ARG NODE_VERSION=18.7.0
 # base node image
 # ===
 FROM node:${NODE_VERSION}-slim as base
+
+RUN apt-get update -qq && \
+    apt-get install -y openssl 
 
 LABEL fly_launch_runtime="Remix/Prisma"
 
@@ -23,7 +26,7 @@ FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y python-is-python3 pkg-config build-essential openssl 
+    apt-get install -y python-is-python3 pkg-config build-essential 
 
 # Install node modules
 COPY --link package.json package-lock.json ./

@@ -1,13 +1,19 @@
+# fly.toml app configuration file generated for uwu-stack-app on 2023-10-17T00:32:28+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = "uwu-stack-app"
 primary_region = "cdg"
 
-[env]
-  ENV="production"
-  PORT = "8080"
-  TZ = "Europe/Paris"
-
 [deploy]
   release_command = "npx prisma migrate deploy"
+
+[env]
+  ENV = "production"
+  PORT = "8080"
+  TZ = "Europe/Paris"
+  PUBLIC_URL = "uwu-stack-app.fly.dev"
 
 [http_service]
   internal_port = 8080

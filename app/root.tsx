@@ -64,7 +64,10 @@ function Document({ children }: DocumentProps) {
   const { ENV } = useLoaderData<typeof loader>()
 
   return (
-    <html lang="fr" className="w-full h-full">
+    <html
+      lang="fr"
+      className="w-full max-w-7xl mx-auto h-full bg-slate-800 text-gray-200 selection:bg-pink-500 selection:text-pink-50"
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
