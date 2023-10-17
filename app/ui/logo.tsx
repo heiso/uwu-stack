@@ -47,15 +47,6 @@ export function Logo({ className, ...props }: LogoProps) {
           y: -((bounded.y * DISTANCE) / RANGE),
         }
 
-        // console.table({
-        //   cursorPos,
-        //   newOrigin,
-        //   newCursorPos,
-        //   bounded,
-        //   rotation,
-        //   translate3d,
-        // })
-
         setRotation({ ...rotation, dx: translate3d.x, dy: translate3d.y })
       }
 
