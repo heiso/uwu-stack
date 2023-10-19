@@ -7,13 +7,14 @@ app = "uwu-stack-app"
 primary_region = "cdg"
 
 [deploy]
-  release_command = "npx prisma migrate deploy"
+  #release_command = "npx prisma migrate deploy"
 
 [env]
   ENV = "production"
   PORT = "8080"
   TZ = "Europe/Paris"
   PUBLIC_URL = "uwu-stack-app.fly.dev"
+  DATABASE_URL = "file:./data.sqlite?connection_limit=1"
 
 [http_service]
   internal_port = 8080
