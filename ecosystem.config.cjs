@@ -23,6 +23,13 @@ const config = {
 
     {
       ...common,
+      name: 'icons',
+      script: 'npx tsx generate-svg-icons-sprite.ts',
+      watch: ['generate-svg-icons-sprite.ts', './svgs/**/*.svg'],
+    },
+
+    {
+      ...common,
       name: 'routes',
       script: 'npx tsx generate-remix-routes.ts',
       watch: ['generate-remix-routes.ts', 'remix.config.js', './app/routes/**/*.tsx'],
