@@ -3,6 +3,7 @@ import { getFieldsetConstraint, parse } from '@conform-to/zod'
 import { Form, useActionData } from '@remix-run/react'
 import { z } from 'zod'
 import { Field, PasswordField } from '../components/field.tsx'
+import { Button } from '../ui/button.tsx'
 import { Logo } from '../ui/logo.tsx'
 import { email } from '../validations.ts'
 
@@ -23,7 +24,7 @@ export default function Index() {
   })
 
   return (
-    <>
+    <div className="flex flex-col items-center gap-6">
       <Logo />
       <Form {...form.props}>
         <Field
@@ -31,11 +32,15 @@ export default function Index() {
           autoComplete="email"
           field={fields.email}
           type="email"
-          icon={<span>c</span>}
+          icon={<span>@</span>}
         />
 
         <PasswordField label="Password" field={fields.password} />
+
+        <Button primary type="submit" className="w-full">
+          Login
+        </Button>
       </Form>
-    </>
+    </div>
   )
 }

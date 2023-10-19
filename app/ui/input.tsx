@@ -5,12 +5,21 @@ import {
   useRef,
   useState,
   type InputHTMLAttributes,
+  type ReactNode,
 } from 'react'
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & { error?: string }
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  error?: string
+  icon?: ReactNode
+}
+
+const defaultStyles =
+  'text-pink-500 placeholder:text-pink-300 hover:border-pink-500 focus:border-pink-500'
+const errorStyles =
+  'text-red-500 placeholder:text-red-300 border-red-500 bg-red-100 hover:border-red-500'
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, className, ...props }, ref) => {
+  ({ error, className, icon, ...props }, ref) => {
     const innerRef = useRef<HTMLInputElement>(null)
     useImperativeHandle(ref, () => innerRef.current!, [])
 
@@ -21,15 +30,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }, [innerRef?.current?.value])
 
     return (
-      <input
-        className={`w-full border px-4 py-3 rounded-lg outline-none ${
-          error
-            ? 'text-red-500 placeholder:text-red-300 border-red-500 bg-red-100 hover:border-red-500'
-            : 'text-pink-500 placeholder:text-pink-300 hover:border-pink-500 focus:border-pink-500'
-        } disabled:pointer-events-none ${isFilled ? 'bg-pink-100' : ''} ${className ?? ''}`}
-        ref={innerRef}
-        {...props}
-      />
+      <div
+        className={`flex flex-row items-center w-full border rounded-lg overflow-hidden ${
+          error ? errorStyles : defaultStyles
+        } ${isFilled ? 'bg-pink-100' : 'bg-white'} ${className ?? ''}`}
+      >
+        <input
+          className={`w-full h-full px-4 py-3 appearance-none outline-none disabled:pointer-events-none bg-transparent`}
+          ref={innerRef}
+          {...props}
+        />
+        {icon && <div className="px-4 select-none">{icon}</div>}
+      </div>
     )
   },
 )

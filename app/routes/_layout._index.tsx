@@ -2,11 +2,12 @@ import { Link as RemixLink } from '@remix-run/react'
 import { type PropsWithChildren } from 'react'
 import { routerPaths } from '../../routes.ts'
 import { Button } from '../ui/button.tsx'
+import { Icon } from '../ui/icon.tsx'
 import { Logo } from '../ui/logo.tsx'
 
 export default function Index() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12 text-center">
       <div className="flex flex-row items-center justify-center">
         <Logo />
         <div className="text-center">
@@ -29,7 +30,13 @@ export default function Index() {
       </p>
 
       <div className="flex flex-row justify-center gap-6">
-        <Button as="link" to="https://github.com/heiso/uwu-stack" target="_blank">
+        <Button
+          as="link"
+          to="https://github.com/heiso/uwu-stack"
+          target="_blank"
+          className="inline-flex gap-2"
+        >
+          <Icon id="github-logo" className="self-center" />
           GitHub
         </Button>
         <Button primary as="link" to={routerPaths['/login']}>

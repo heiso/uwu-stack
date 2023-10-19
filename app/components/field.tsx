@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from 'react'
 import { Hint, type HintProps } from '../ui/hint.tsx'
+import { Icon } from '../ui/icon.tsx'
 import { Input } from '../ui/input.tsx'
 import { Label } from '../ui/label.tsx'
 
@@ -19,12 +20,11 @@ export type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
 }
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
-  ({ label, field, type, icon, hint, ...props }, ref) => {
+  ({ label, field, type, hint, ...props }, ref) => {
     return (
       <div>
         <Label>{label}</Label>
         <Input ref={ref} error={field.error} {...conform.input(field, { type })} {...props} />
-        {icon}
         <Hint error={field.error} hint={hint} />
       </div>
     )
@@ -39,13 +39,30 @@ export const PasswordField = forwardRef<HTMLInputElement, FieldProps>(
     return (
       <>
         <Label>{label}</Label>
-        <Input
-          ref={ref}
-          autoComplete="current-password"
-          {...conform.input(field, { type: show ? 'text' : 'password' })}
-          {...props}
-        />
-        <div onClick={() => setShow(!show)}>{show ? 'hide' : 'show'}</div>
+        <div className="relative">
+          <Input
+            ref={ref}
+            autoComplete="current-password"
+            error={field.error}
+            {...conform.input(field, { type: show ? 'text' : 'password' })}
+            {...props}
+            icon={
+              show ? (
+                <Icon
+                  onClick={() => setShow(!show)}
+                  id="eye-open"
+                  className="self-center fill-pink-500 cursor-pointer"
+                />
+              ) : (
+                <Icon
+                  onClick={() => setShow(!show)}
+                  id="eye-closed"
+                  className="self-center fill-pink-500 cursor-pointer"
+                />
+              )
+            }
+          />
+        </div>
         <Hint error={field.error} />
       </>
     )

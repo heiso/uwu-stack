@@ -15,7 +15,7 @@ export default function Index() {
   const { version } = useLoaderData<typeof loader>()
 
   return (
-    <>
+    <div className="h-full w-full flex flex-col">
       <header className="w-full px-6 py-4 flex flex-row items-center justify-between mb-10">
         <RemixLink
           to={routerPaths['/']}
@@ -32,11 +32,11 @@ export default function Index() {
           target="_blank"
           className="fill-gray-400 transition hover:fill-gray-200 active:fill-pink-200"
         >
-          <Icon id="github" />
+          <Icon id="github-logo" />
         </RemixLink>
       </header>
 
-      <main className="mb-auto mx-auto px-4 max-w-[80ch] text-center">
+      <main className="mb-auto mx-auto px-4 max-w-[80ch]">
         <Outlet />
       </main>
 
@@ -53,6 +53,6 @@ export default function Index() {
           heiso
         </Link>
       </footer>
-    </>
+    </div>
   )
 }
