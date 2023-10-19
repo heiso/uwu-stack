@@ -2,7 +2,7 @@ import React, { type HTMLAttributes, type ReactNode } from 'react'
 
 const EMPTY_HINT = 'n/a'
 
-type InputErrorProps = React.PropsWithChildren<
+export type HintProps = React.PropsWithChildren<
   HTMLAttributes<HTMLElement> & {
     error?: string
     required?: boolean
@@ -10,9 +10,9 @@ type InputErrorProps = React.PropsWithChildren<
   }
 >
 
-export function Hint({ className, error, required, hint = EMPTY_HINT }: InputErrorProps) {
+export function Hint({ className, error, required, hint = EMPTY_HINT }: HintProps) {
   if (error) {
-    return <div className={`mt-1 text-small text-red-300 ${className ?? ''}`}>{error}</div>
+    return <div className={`mt-1 text-small text-red-400 ${className ?? ''}`}>{error}</div>
   }
 
   if (required) {
@@ -21,7 +21,7 @@ export function Hint({ className, error, required, hint = EMPTY_HINT }: InputErr
 
   return (
     <div
-      className={`mt-1 text-small text-fuchsia-500 ${className ?? ''} ${
+      className={`mt-1 text-small text-gray-400 ${className ?? ''} ${
         hint === EMPTY_HINT ? 'opacity-0' : ''
       }`}
     >

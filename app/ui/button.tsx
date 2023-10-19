@@ -3,10 +3,10 @@ import { type ButtonHTMLAttributes } from 'react'
 
 const defaultClass =
   'rounded-md text-center disabled:pointer-events-none px-9 py-4 font-bold text-large disabled:opacity-50 select-none transition hover:scale-105 active:opacity-80'
-const primaryClass = 'bg-pink-500 text-pink-100'
+const primaryClass = 'bg-pink-500 text-pink-50 [text-shadow:0_0_1px_rgb(0,0,0,0.4)]'
 const secondaryClass = 'bg-transparent border'
 
-type ButtonProps = (
+export type ButtonProps = (
   | (ButtonHTMLAttributes<HTMLButtonElement> & { as?: 'button' })
   | (LinkProps & { as: 'link' })
 ) & { primary?: boolean }

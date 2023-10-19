@@ -61,19 +61,12 @@ export const links: LinksFunction = () => {
 
 type DocumentProps = PropsWithChildren
 function Document({ children }: DocumentProps) {
-  const { ENV } = useLoaderData<typeof loader>()
-
   return (
     <html
       lang="fr"
       className="w-full max-w-7xl mx-auto h-full bg-slate-800 text-gray-200 selection:bg-pink-500 selection:text-pink-50"
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(ENV)}`,
-          }}
-        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
@@ -106,9 +99,16 @@ export function ErrorBoundary() {
 }
 
 export default function App() {
+  const { ENV } = useLoaderData<typeof loader>()
+
   return (
     <Document>
       <Outlet />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.ENV = ${JSON.stringify(ENV)}`,
+        }}
+      />
     </Document>
   )
 }

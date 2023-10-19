@@ -2,18 +2,6 @@ volumes:
   pgdata:
 
 services:
-  postgres:
-    restart: unless-stopped
-    image: postgres:12-alpine
-    volumes:
-      - pgdata:/data:delegated
-      - ./prisma/seeds:/seeds
-    environment:
-      PGDATA: /data
-      POSTGRES_HOST_AUTH_METHOD: trust
-    ports:
-      - 5432:5432
-
   redis:
     restart: unless-stopped
     image: redis

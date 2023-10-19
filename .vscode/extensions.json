@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "prisma.prisma",
     "dbaeumer.vscode-eslint",
-    "emeraldwalk.runonsave"
+    "emeraldwalk.runonsave",
+    "qwtel.sqlite-viewer"
   ]
 }
