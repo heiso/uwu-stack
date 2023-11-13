@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node'
-import { Outlet, Link as RemixLink, useLoaderData } from '@remix-run/react'
+import { NavLink, Outlet, Link as RemixLink, useLoaderData } from '@remix-run/react'
 import { version } from '../../package.json'
 import { routerPaths } from '../../routes.ts'
 import { Icon } from '../ui/icon.tsx'
@@ -27,16 +27,49 @@ export default function Index() {
           </small>
         </RemixLink>
 
-        <RemixLink
-          to="https://github.com/heiso/uwu-stack"
-          target="_blank"
-          className="fill-gray-400 transition hover:fill-gray-200 active:fill-pink-200"
-        >
-          <Icon id="github-logo" />
-        </RemixLink>
+        <div className="flex flex-row items-center gap-6">
+          <NavLink
+            to={routerPaths['/ui']}
+            className={({ isActive }) =>
+              `transition hover:text-gray-100 active:text-pink-200 ${
+                isActive ? 'text-gray-100 pointer-events-none' : 'text-gray-400'
+              }`
+            }
+          >
+            UI
+          </NavLink>
+          <NavLink
+            to={routerPaths['/signup']}
+            className={({ isActive }) =>
+              `transition hover:text-gray-100 active:text-pink-200 ${
+                isActive ? 'text-gray-100 pointer-events-none' : 'text-gray-400'
+              }`
+            }
+          >
+            Signup
+          </NavLink>
+          <NavLink
+            to={routerPaths['/login']}
+            className={({ isActive }) =>
+              `transition hover:text-gray-100 active:text-pink-200 ${
+                isActive ? 'text-gray-100 pointer-events-none' : 'text-gray-400'
+              }`
+            }
+          >
+            Login
+          </NavLink>
+          <div className="h-6 w-0.5 bg-slate-700"></div>
+          <RemixLink
+            to="https://github.com/heiso/uwu-stack"
+            target="_blank"
+            className="fill-gray-400 transition hover:fill-gray-200 active:fill-pink-200"
+          >
+            <Icon id="github-logo" />
+          </RemixLink>
+        </div>
       </header>
 
-      <main className="mb-auto mx-auto px-4 max-w-[80ch]">
+      <main className="mb-auto mx-auto px-4 h-full max-w-[80ch]">
         <Outlet />
       </main>
 

@@ -1,4 +1,4 @@
-import { redirect, type DataFunctionArgs } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
 import { routerPaths } from '../routes.ts'
 import { prisma } from './prisma.server.ts'
 import { getURLWithRedirectTo } from './redirect-to.server.ts'
@@ -18,37 +18,30 @@ async function redirectToLogin(session: Awaited<ReturnType<typeof getSession>>, 
   })
 }
 
-export async function getCurrentUser(request: DataFunctionArgs['request']) {
-  const session = await getSession(request.headers.get('Cookie'))
-  const userId = session.get('userId')
-
-  if (!userId) {
-    throw await redirectToLogin(session, request)
-  }
-
-  const user = await prisma.user.findFirst({
-    where: { id: userId },
-    select: {
-      id: true,
-      isEmailValidated: true,
-      email: true,
-    },
-  })
-  if (!user || !user.isEmailValidated) {
-    throw await redirectToLogin(session, request)
-  }
-
-  return {
-    ...user,
-    session,
-  }
-}
-
-export async function assertAnonymous(request: DataFunctionArgs['request']) {
+export async function assertAnonymous(request: Request) {
   const session = await getSession(request.headers.get('Cookie'))
   const userId = session.get('userId')
 
   if (userId) {
     throw redirect(routerPaths['/'])
+  }
+}
+
+export async function assertAuthenticated(request: Request) {
+  const session = await getSession(request.headers.get('Cookie'))
+  const userId = session.get('userId')
+
+  const me = userId
+    ? await prisma.user.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          isEmailValidated: true,
+        },
+      })
+    : null
+
+  if (!me || !me.isEmailValidated) {
+    throw await redirectToLogin(session, request)
   }
 }

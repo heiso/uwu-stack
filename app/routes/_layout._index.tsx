@@ -1,13 +1,13 @@
 import { Link as RemixLink } from '@remix-run/react'
 import { type PropsWithChildren } from 'react'
 import { routerPaths } from '../../routes.ts'
+import { Logo } from '../components/logo.tsx'
 import { Button } from '../ui/button.tsx'
 import { Icon } from '../ui/icon.tsx'
-import { Logo } from '../ui/logo.tsx'
 
 export default function Index() {
   return (
-    <div className="flex flex-col gap-12 text-center">
+    <div className="h-full flex flex-col gap-12 text-center justify-between p-20">
       <div className="flex flex-row items-center justify-center">
         <Logo />
         <div className="text-center">
@@ -36,16 +36,16 @@ export default function Index() {
           target="_blank"
           className="inline-flex gap-2"
         >
-          <Icon id="github-logo" className="self-center" />
+          <Icon id="github-logo" className="self-center fill-gray-200" />
           GitHub
         </Button>
-        <Button primary as="link" to={routerPaths['/login']}>
+        <Button primary as="link" to={routerPaths['/ui']}>
           Let's twy it !
         </Button>
       </div>
 
       <div className="text-xl">
-        <p>Made with a lowts of gweat technologies !</p>
+        <p>Lowts of gweat keywords !</p>
         <div className="mt-10 flex flex-row flex-wrap justify-center gap-2">
           <Techno>Remix</Techno>
           <Techno>Fly.io</Techno>
@@ -56,7 +56,22 @@ export default function Index() {
           <Techno>Prettier</Techno>
           <Techno>Docker</Techno>
           <Techno>Sentry</Techno>
-          <Techno>Lowve</Techno>
+          <Techno>SQlite</Techno>
+          <Techno>Redis</Techno>
+          <Techno>Postgres</Techno>
+          <Techno>SVGs</Techno>
+          <Techno>React</Techno>
+          <Techno>PM2</Techno>
+          <Techno>Koa</Techno>
+          <Techno>OTP</Techno>
+          <Techno>Rate-limiter</Techno>
+          <Techno>Zod</Techno>
+          <Techno>Conform-to</Techno>
+          <Techno>date-fns</Techno>
+          <Techno>Prettier</Techno>
+          <Techno>Eslint</Techno>
+          <Techno>Jest</Techno>
+          <Techno>❤️</Techno>
         </div>
       </div>
     </div>

@@ -42,6 +42,9 @@ COPY --link . .
 # Generate Routes
 RUN npx tsx generate-remix-routes.ts
 
+# Generate SVGs
+RUN npx tsx generate-svg-icons-sprite.ts
+
 # Build application
 RUN npm run build
 

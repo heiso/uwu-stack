@@ -55,3 +55,15 @@ Run tests
 ```bash
 npm run test
 ```
+
+## TODO
+
+- ✅ ...Done
+- ⌛️ ...In Progress
+- 🚨 ...Bug
+- 🚧 ...Improvment
+
+- full sqlite option
+- redis/postgres option
+- auth flow
+- ui

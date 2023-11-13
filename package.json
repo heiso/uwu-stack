@@ -15,7 +15,7 @@
     "restart": "pm2 delete ecosystem.config.cjs && pm2 start ecosystem.config.cjs",
     "create-migration": "npx prisma migrate dev --create-only",
     "reset-database": "prisma migrate reset -f --skip-generate",
-    "build": "npx tsc -p tsconfig.build.json && remix build --sourcemap",
+    "build": "npx tsc -p tsconfig.build.json && remix build",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
     "test": "jest"
   },
@@ -31,7 +31,6 @@
     "koa": "^2.14.2",
     "koa-static": "^5.0.0",
     "koa-trust-proxy": "^0.1.4",
-    "nanoid": "^5.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-select": "^5.7.7",
