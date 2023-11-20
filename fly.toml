@@ -16,10 +16,35 @@ primary_region = "cdg"
   PUBLIC_URL = "uwu-stack-app.fly.dev"
   DATABASE_URL = "file:./data.sqlite?connection_limit=1"
 
-[http_service]
+[[service]]
   internal_port = 8080
-  force_https = true
+  processes = [ "app" ]
+  protocol = "tcp"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
+
+  [[services.ports]]
+    handlers = [ "http" ]
+    port = 80
+    force_https = true
+
+  [[services.ports]]
+    handlers = [ "tls", "http" ]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+  [[services.http_checks]]
+    interval = 10000
+    grace_period = "5s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    timeout = 2000
+    tls_skip_verify = false
+  
