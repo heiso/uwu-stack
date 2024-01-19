@@ -13,8 +13,8 @@ import {
 } from '@remix-run/react'
 import type { PropsWithChildren } from 'react'
 import { routerPaths } from '../routes.ts'
-import fontStyleSheetUrl from './font.css'
-import tailwindStylesheetUrl from './tailwind.css'
+import './font.css'
+import './tailwind.css'
 
 type ENV = {
   ENV: string
@@ -43,9 +43,6 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => {
   return [
-    // Preload CSS as a resource to avoid render blocking
-    { rel: 'preload', href: fontStyleSheetUrl, as: 'style' },
-    { rel: 'preload', href: tailwindStylesheetUrl, as: 'style' },
     {
       rel: 'alternate icon',
       type: 'image/png',
@@ -57,8 +54,6 @@ export const links: LinksFunction = () => {
       href: '/site.webmanifest',
       crossOrigin: 'use-credentials',
     } as const, // necessary to make typescript happy
-    { rel: 'stylesheet', href: fontStyleSheetUrl },
-    { rel: 'stylesheet', href: tailwindStylesheetUrl },
   ]
 }
 

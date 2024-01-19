@@ -63,7 +63,13 @@
       viewBox="0 0 226 108"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect x="1" y="99.2132" width="30" height="10" transform="rotate(-45 1 99.2132)" />
+      <rect
+        x="1"
+        y="99.2132"
+        width="30"
+        height="10"
+        transform="rotate(-45 1 99.2132)"
+      />
       <rect
         x="29.2843"
         y="99.2132"
@@ -78,7 +84,13 @@
         height="10"
         transform="rotate(-45 57.5685 99.2132)"
       />
-      <rect x="140" y="99.2132" width="30" height="10" transform="rotate(-45 140 99.2132)" />
+      <rect
+        x="140"
+        y="99.2132"
+        width="30"
+        height="10"
+        transform="rotate(-45 140 99.2132)"
+      />
       <rect
         x="168.284"
         y="99.2132"
