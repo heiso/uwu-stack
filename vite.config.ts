@@ -1,4 +1,4 @@
-import { unstable_vitePlugin as remix } from '@remix-run/dev'
+import { vitePlugin as remix } from '@remix-run/dev'
 import { installGlobals } from '@remix-run/node'
 
 import { defineConfig } from 'vite'
@@ -13,7 +13,7 @@ export default defineConfig({
     remix({
       ignoredRouteFiles: ['**/.*'],
       serverModuleFormat: 'esm',
-      serverBuildDirectory: 'build/vite-server',
+      buildDirectory: 'build/vite-server',
     }),
   ],
 })
