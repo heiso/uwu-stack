@@ -39,7 +39,7 @@ const config = {
       ...common,
       name: 'server',
       watch: ['server/**/*', '.env'],
-      script: 'node --env-file=.env --inspect --loader tsx server',
+      script: 'node --env-file=.env --inspect --import tsx server',
     },
   ],
 }

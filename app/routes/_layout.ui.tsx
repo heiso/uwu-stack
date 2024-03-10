@@ -1,5 +1,5 @@
-import { useForm } from '@conform-to/react'
-import { getFieldsetConstraint, parse } from '@conform-to/zod'
+import { getFormProps, getInputProps, getTextareaProps, useForm } from '@conform-to/react'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod'
 import type { ActionFunctionArgs } from '@remix-run/node'
 import { Form } from '@remix-run/react'
 import { z } from 'zod'
@@ -41,27 +41,43 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Index() {
   const [form, fields] = useForm({
     shouldValidate: 'onInput',
-    constraint: getFieldsetConstraint(schema),
-    onValidate: ({ formData }) => parse(formData, { schema }),
+    constraint: getZodConstraint(schema),
+    onValidate: ({ formData }) => parseWithZod(formData, { schema }),
   })
 
   return (
-    <Form {...form.props} method="post" className="flex flex-col gap-4 w-full">
+    <Form {...getFormProps(form)} method="post" className="flex flex-col gap-4 w-full">
       <div className="grid grid-cols-2 gap-4">
-        <Field label="Text" hint="This is a hint" field={fields.text} />
+        <Field
+          label="Text"
+          hint="This is a hint"
+          {...getInputProps(fields.text, { type: 'text' })}
+        />
 
         <Field
           label="Input with icon"
           hint="This is a hint"
-          field={fields.text2}
           icon={<Icon id="magnifying-glass" />}
+          {...getInputProps(fields.text2, { type: 'text' })}
         />
 
-        <Field label="Number" hint="This is a hint" field={fields.number} type="number" />
+        <Field
+          label="Number"
+          hint="This is a hint"
+          {...getInputProps(fields.number, { type: 'number' })}
+        />
 
-        <PasswordField label="Password" hint="This is a hint" field={fields.password} />
+        <PasswordField
+          label="Password"
+          hint="This is a hint"
+          {...getInputProps(fields.password, { type: 'password' })}
+        />
 
-        <CheckboxField label="Checkbox" hint="This is a hint" field={fields.checkbox} />
+        <CheckboxField
+          label="Checkbox"
+          hint="This is a hint"
+          {...getInputProps(fields.checkbox, { type: 'checkbox' })}
+        />
 
         <Switch leftLabel="Left" rightLabel="Right" />
 
@@ -75,7 +91,11 @@ export default function Index() {
         />
       </div>
 
-      <TextareaField label="Textarea" hint="This is a hint" field={fields.textarea} />
+      <TextareaField
+        label="Textarea"
+        hint="This is a hint"
+        {...getTextareaProps(fields.textarea)}
+      />
 
       <div className="grid grid-cols-2 gap-4">
         <Button primary>Primary</Button>
