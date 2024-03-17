@@ -1,6 +1,5 @@
 import { json, type LinksFunction, type MetaFunction } from '@remix-run/node'
 import {
-  isRouteErrorResponse,
   Link,
   Links,
   LiveReload,
@@ -8,6 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   useLoaderData,
   useRouteError,
 } from '@remix-run/react'

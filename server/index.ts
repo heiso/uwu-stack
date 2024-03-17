@@ -1,5 +1,5 @@
 import { installGlobals, type ServerBuild } from '@remix-run/node'
-import { secondsInHour, secondsInYear, secondsToMilliseconds } from 'date-fns'
+import { hoursToMilliseconds } from 'date-fns'
 import Koa, { type Context } from 'koa'
 import connect from 'koa-connect'
 import serve from 'koa-static'
@@ -53,21 +53,21 @@ declare module '@remix-run/server-runtime' {
     app.use(
       serve('build/client/assets', {
         immutable: true,
-        maxAge: secondsToMilliseconds(secondsInYear),
+        maxAge: hoursToMilliseconds(24 * 30 * 12),
       }),
     )
 
     app.use(
       serve('build/client/fonts', {
         immutable: true,
-        maxAge: secondsToMilliseconds(secondsInYear),
+        maxAge: hoursToMilliseconds(24 * 30 * 12),
       }),
     )
 
     app.use(
       serve('build/client', {
         immutable: false,
-        maxAge: secondsToMilliseconds(secondsInHour),
+        maxAge: hoursToMilliseconds(1),
       }),
     )
   }

@@ -1,6 +1,8 @@
 node_modules
 routes.ts
 svgs.ts
+data.sqlite
+data.sqlite-journal
 
 dist
 /.cache

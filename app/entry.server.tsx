@@ -3,7 +3,7 @@ import { PassThrough } from 'node:stream'
 import type { AppLoadContext, DataFunctionArgs, EntryContext } from '@remix-run/node'
 import { createCookie, createReadableStreamFromReadable } from '@remix-run/node'
 import { RemixServer } from '@remix-run/react'
-import isbot from 'isbot'
+import { isbot } from 'isbot'
 import { renderToPipeableStream } from 'react-dom/server'
 import { COOKIE_NAME, COOKIE_OPTIONS } from './session.server.ts'
 

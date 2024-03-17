@@ -6,7 +6,7 @@ import {
   type CookieOptions,
 } from '@remix-run/node'
 import { randomUUID } from 'crypto'
-import { getUnixTime, secondsInDay } from 'date-fns'
+import { getUnixTime, hoursToSeconds } from 'date-fns'
 import { redis } from './redis.server.ts'
 
 export const COOKIE_NAME = 'session'
@@ -14,7 +14,7 @@ export const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
   sameSite: 'lax',
-  maxAge: secondsInDay * 7,
+  maxAge: hoursToSeconds(24 * 7),
   secrets: [process.env.SESSION_SECRET],
   // domain: process.env.SESSION_COOKIE_DOMAIN,
 } satisfies CookieOptions
