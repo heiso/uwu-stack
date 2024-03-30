@@ -11,7 +11,6 @@ export default defineConfig({
   },
   plugins: [
     remix({
-      ignoredRouteFiles: ['**/.*'],
       serverModuleFormat: 'esm',
       buildDirectory: 'build/vite-server',
     }),

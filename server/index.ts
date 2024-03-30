@@ -3,6 +3,8 @@ import { hoursToMilliseconds } from 'date-fns'
 import Koa, { type Context } from 'koa'
 import connect from 'koa-connect'
 import serve from 'koa-static'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { createRequestHandler } from './adapter.js'
 import './process.js'
 
@@ -50,24 +52,30 @@ declare module '@remix-run/server-runtime' {
   if (viteDevServer) {
     app.use(connect(viteDevServer.middlewares))
   } else {
-    app.use(
-      serve('build/client/assets', {
-        immutable: true,
-        maxAge: hoursToMilliseconds(24 * 30 * 12),
-      }),
-    )
+    // app.use(
+    //   serve('build/client/assets', {
+    //     immutable: true,
+    //     maxAge: hoursToMilliseconds(24 * 30 * 12),
+    //   }),
+    // )
 
-    app.use(
-      serve('build/client/fonts', {
-        immutable: true,
-        maxAge: hoursToMilliseconds(24 * 30 * 12),
-      }),
-    )
+    // app.use(
+    //   serve('build/client/fonts', {
+    //     immutable: true,
+    //     maxAge: hoursToMilliseconds(24 * 30 * 12),
+    //   }),
+    // )
 
+    // app.use(
+    //   serve('build/client', {
+    //     immutable: false,
+    //     maxAge: hoursToMilliseconds(1),
+    //   }),
+    // )
     app.use(
-      serve('build/client', {
+      serve('build/vite-server/client', {
         immutable: false,
-        maxAge: hoursToMilliseconds(1),
+        maxAge: hoursToMilliseconds(24 * 30 * 12),
       }),
     )
   }
@@ -75,8 +83,9 @@ declare module '@remix-run/server-runtime' {
   const build = (
     viteDevServer
       ? () => viteDevServer.ssrLoadModule('virtual:remix/server-build')
-      : // @ts-expect-error
-        await import('../vite-server/index.js')
+      : await import(
+          `${path.dirname(fileURLToPath(import.meta.url))}/../vite-server/server/index.js`
+        )
   ) as ServerBuild | (() => Promise<ServerBuild>)
 
   app.use(createRequestHandler({ build, mode: process.env.NODE_ENV, getLoadContext: (ctx) => ctx }))
