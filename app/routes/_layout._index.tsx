@@ -2,6 +2,7 @@ import { Link as RemixLink } from '@remix-run/react'
 import { type PropsWithChildren } from 'react'
 import { routerPaths } from '../../routes.ts'
 import { Logo } from '../components/logo.tsx'
+import { ScssButton } from '../ui/ScssButton/button.tsx'
 import { Button } from '../ui/button.tsx'
 import { Icon } from '../ui/icon.tsx'
 
@@ -42,6 +43,15 @@ export default function Index() {
         <Button primary as="link" to={routerPaths['/ui']}>
           Let's twy it !
         </Button>
+      </div>
+
+      <div className="flex flex-row justify-center gap-6">
+        <ScssButton primary as="link" to={routerPaths['/ui']}>
+          Look mum, i'm styled without tailwind
+        </ScssButton>
+        <ScssButton as="link" to={routerPaths['/ui']}>
+          Lol me 2
+        </ScssButton>
       </div>
 
       <div className="text-xl">

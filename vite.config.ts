@@ -15,4 +15,11 @@ export default defineConfig({
       buildDirectory: 'build/vite-server',
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "app/ui/style/_global.scss";`,
+      },
+    },
+  },
 })
