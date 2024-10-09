@@ -1,7 +1,9 @@
 import { Link, type LinkProps } from '@remix-run/react'
 import { type ButtonHTMLAttributes } from 'react'
 
-import './button.scss'
+import classNames from 'classnames'
+
+import styles from './button.module.scss'
 
 export type ButtonProps = (
   | (ButtonHTMLAttributes<HTMLButtonElement> & { as?: 'button' })
@@ -9,7 +11,11 @@ export type ButtonProps = (
 ) & { primary?: boolean }
 
 export function ScssButton({ primary, className, children, ...props }: ButtonProps) {
-  const buttonClassName = `button ${primary ? 'button-primary' : 'button-secondary'} ${className}`
+  const buttonClassName = classNames(styles.button, {
+    [styles.buttonPrimary]: primary,
+    [styles.buttonSecondary]: !primary,
+    className,
+  })
 
   if (props.as === 'link') {
     return (
