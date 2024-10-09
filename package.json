@@ -62,6 +62,7 @@
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.11.0",
     "prisma-case-format": "^2.2.1",
+    "sass": "^1.79.4",
     "tailwindcss": "^3.4.3",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3",

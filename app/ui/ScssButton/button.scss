@@ -1,0 +1,37 @@
+.button {
+  display: inline-block;
+  border-radius: 0.375rem;
+  text-align: center;
+  pointer-events: auto;
+  padding: 1rem 2.25rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+  user-select: none;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.button-primary {
+  background-color: $primary-color;
+  color: #fdf2f8;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.button-secondary {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
