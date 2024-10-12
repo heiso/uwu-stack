@@ -18,20 +18,6 @@ model User {
   email            String  @unique
   isEmailValidated Boolean @default(false) @map("is_email_validated")
   hashedPassword   String? @map("hashed_password")
-  todos            Todo[]
 
   @@map("users")
-}
-
-model Todo {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
-
-  label       String
-  isCompleted Boolean @default(false) @map("is_completed")
-  user        User    @relation(fields: [userId], references: [id])
-  userId      Int     @map("user_id")
-
-  @@map("todos")
 }

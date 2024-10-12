@@ -1,6 +1,11 @@
 import { PassThrough } from 'node:stream'
 
-import type { AppLoadContext, DataFunctionArgs, EntryContext } from '@remix-run/node'
+import type {
+  ActionFunctionArgs,
+  AppLoadContext,
+  EntryContext,
+  LoaderFunctionArgs,
+} from '@remix-run/node'
 import { createCookie, createReadableStreamFromReadable } from '@remix-run/node'
 import { RemixServer } from '@remix-run/react'
 import { isbot } from 'isbot'
@@ -127,15 +132,18 @@ function handleBrowserRequest(
   })
 }
 
-export async function handleDataRequest(response: Response, { request }: DataFunctionArgs) {
-  /**
-   * @todo: remove the `as unknown as Headers`, without it's currently triggering a ts error when linting
-   */
-  await renewSession(request.headers, response.headers as unknown as Headers)
+export async function handleDataRequest(
+  response: Response,
+  { request }: ActionFunctionArgs | LoaderFunctionArgs,
+) {
+  await renewSession(request.headers, response.headers)
 
   return response
 }
 
-export function handleError(error: unknown, { request }: DataFunctionArgs): void {
+export function handleError(
+  error: unknown,
+  { request }: ActionFunctionArgs | LoaderFunctionArgs,
+): void {
   console.error(error)
 }

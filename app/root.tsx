@@ -2,7 +2,6 @@ import { json, type LinksFunction, type MetaFunction } from '@remix-run/node'
 import {
   Link,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -74,7 +73,6 @@ function Document({ children }: DocumentProps) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )
