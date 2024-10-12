@@ -5,7 +5,6 @@ const store: Record<string, { count: number; ttl: Date }> = {}
 /**
  * Implement a sqlite rate limiter for a given index
  * <index> is allowed to perform <limit> requests per <timeRange> seconds
- * See example here https://redis.io/commands/INCR#pattern-rate-limiter-2
  *
  * @param label
  * @param index What we want to track (ip, email...)

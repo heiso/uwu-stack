@@ -27,7 +27,7 @@ type SessionFlashData = {
   error: string
 }
 
-function createRediSessionStorage({ cookie }: { cookie?: Cookie }) {
+function createRedisSessionStorage({ cookie }: { cookie?: Cookie }) {
   return createSessionStorage<SessionData, SessionFlashData>({
     cookie,
 
@@ -62,7 +62,7 @@ function createRediSessionStorage({ cookie }: { cookie?: Cookie }) {
   })
 }
 
-const { getSession, commitSession, destroySession } = createRediSessionStorage({
+const { getSession, commitSession, destroySession } = createRedisSessionStorage({
   cookie: createCookie(COOKIE_NAME, COOKIE_OPTIONS),
 })
 

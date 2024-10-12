@@ -7,5 +7,4 @@ PUBLIC_URL=http://localhost:3000
 DATABASE_URL=file:./data.sqlite?connection_limit=1
 
 # Secrets
-REDIS_URL=redis://127.0.0.1:6379
 SESSION_SECRET=to-define

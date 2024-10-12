@@ -10,7 +10,7 @@ import { createCookie, createReadableStreamFromReadable } from '@remix-run/node'
 import { RemixServer } from '@remix-run/react'
 import { isbot } from 'isbot'
 import { renderToPipeableStream } from 'react-dom/server'
-import { COOKIE_NAME, COOKIE_OPTIONS } from './session.server.ts'
+import { COOKIE_NAME, COOKIE_OPTIONS } from './session.sqlite.server.ts'
 
 const sessionCookie = createCookie(COOKIE_NAME, COOKIE_OPTIONS)
 const ABORT_DELAY = 5_000

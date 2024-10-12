@@ -6,7 +6,6 @@ declare global {
       ENV: string
       PORT: string
       PUBLIC_URL: string
-      REDIS_URL: string
       DATABASE_URL: string
       SESSION_COOKIE_DOMAIN: string | undefined
       SESSION_SECRET: string
@@ -22,7 +21,6 @@ assert(process.env.ENV, 'ENV must be defined')
 assert(process.env.PORT, 'PORT must be defined')
 assert(process.env.PUBLIC_URL, 'PUBLIC_URL must be defined')
 assert(process.env.SESSION_SECRET, 'SESSION_SECRET must be defined')
-assert(process.env.REDIS_URL, 'REDIS_URL must be defined')
 assert(process.env.DATABASE_URL, 'DATABASE_URL must be defined')
 
 if (process.env.FLY_IMAGE_REF) {

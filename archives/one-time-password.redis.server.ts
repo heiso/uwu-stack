@@ -50,11 +50,7 @@ export async function checkOTP(email: User['email'], code: string): Promise<OTP 
 
   const json = await redis.get(getKey(email))
 
-  if (!json) {
-    return null
-  }
-
-  const otp = JSON.parse(json)
+  const otp: OTP = json ? JSON.parse(json) : { attempts: 0 }
 
   if (otp.code !== code) {
     otp.attempts = (otp.attempts || 0) + 1

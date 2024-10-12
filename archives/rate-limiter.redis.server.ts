@@ -1,4 +1,4 @@
-import { redis } from '../archives/redis.server.ts'
+import { redis } from './redis.server.ts'
 
 /**
  * Implement a redis rate limiter for a given index

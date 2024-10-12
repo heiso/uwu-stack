@@ -2,7 +2,7 @@ import { redirect } from '@remix-run/node'
 import { routerPaths } from '../routes.ts'
 import { prisma } from './prisma.server.ts'
 import { getURLWithRedirectTo } from './redirect-to.server.ts'
-import { destroySession, getSession } from './session.server.ts'
+import { destroySession, getSession } from './session.sqlite.server.ts'
 
 async function redirectToLogin(session: Awaited<ReturnType<typeof getSession>>, request: Request) {
   const originUrl = new URL(request.url)

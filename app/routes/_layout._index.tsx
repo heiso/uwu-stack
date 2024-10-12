@@ -1,5 +1,4 @@
 import { Link as RemixLink } from '@remix-run/react'
-import { type PropsWithChildren } from 'react'
 import { routerPaths } from '../../routes.ts'
 import { Logo } from '../components/logo.tsx'
 import { Button } from '../ui/button.tsx'
@@ -43,42 +42,6 @@ export default function Index() {
           Let's twy it !
         </Button>
       </div>
-
-      <div className="text-xl">
-        <p>Lowts of gweat keywords !</p>
-        <div className="mt-10 flex flex-row flex-wrap justify-center gap-2">
-          <Techno>Remix</Techno>
-          <Techno>Fly.io</Techno>
-          <Techno>Prisma</Techno>
-          <Techno>Tailwindcss</Techno>
-          <Techno>Typescript</Techno>
-          <Techno>Stripe</Techno>
-          <Techno>Prettier</Techno>
-          <Techno>Docker</Techno>
-          <Techno>Sentry</Techno>
-          <Techno>SQlite</Techno>
-          <Techno>Redis</Techno>
-          <Techno>Postgres</Techno>
-          <Techno>SVGs</Techno>
-          <Techno>React</Techno>
-          <Techno>PM2</Techno>
-          <Techno>Koa</Techno>
-          <Techno>OTP</Techno>
-          <Techno>Rate-limiter</Techno>
-          <Techno>Zod</Techno>
-          <Techno>Conform-to</Techno>
-          <Techno>date-fns</Techno>
-          <Techno>Prettier</Techno>
-          <Techno>Eslint</Techno>
-          <Techno>Jest</Techno>
-          <Techno>❤️</Techno>
-        </div>
-      </div>
     </div>
   )
-}
-
-type TechnoProps = PropsWithChildren
-function Techno({ children }: TechnoProps) {
-  return <div className="px-2 py-1 backdrop-blur-md rounded-md bg-slate-900">{children}</div>
 }
